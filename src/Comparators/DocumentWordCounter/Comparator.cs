@@ -16,12 +16,17 @@ namespace DocumentPlagiarismChecker.Comparators.DocumentWordCounter
     /// The Word Counter Comparator reads a pair of files and counts how many words and how many times appear on each file, and then calculates
     /// how many of those appearences matches between documents. So, two documents with the same amount of the same words can be a copy with
     /// a high level of provability.
+    ///ESPAÑOL
+    ///El contador y comprador de palabras lee un par de archivos y cuenta cuantas palabras y cuantas veces aparecen en cada archivo, y entonces calcula cuantos cruces existen entre documentos. 
+    ///Entonces 2 documentos con la misma cantidad de las mismas palabras puede ser una copia con un alto nivel de probabilidad.
     /// </summary>
     /// <typeparam name="Document"></typeparam>
     internal class Comparator: Core.BaseComparator<Document>
     {  
         /// <summary>
         /// Creates a new instance for the Comparator.
+        ///ESPAÑOL
+        ///Crea una instanca para el comparador
         /// </summary>
         /// <param name="fileLeftPath">The left side file's path.</param>
         /// <param name="fileRightPath">The right side file's path.</param>
@@ -32,10 +37,14 @@ namespace DocumentPlagiarismChecker.Comparators.DocumentWordCounter
         
         /// <summary>
         /// Counts how many words and how many times appears within each document, and checks the matching percentage.
+         ///ESPAÑOL
+         /// Cuenta cuantas palabras y cuantas veces esa aparece incluida en cada documento , y comprueba el porcentaje de coincidencias
         /// </summary>
         /// <returns>The matching's results.</returns>
         public override ComparatorMatchingScore Run(){
             //Counting the words appearences for each document (left and right).
+            ///ESPAÑOL
+            //Contando la palabras aparecidas para cada documento (izquierda derecha)
             Dictionary<string, int[]> counter = new Dictionary<string, int[]>();
             foreach(string word in this.Left.WordAppearances.Select(x => x.Key)){
                 if(!counter.ContainsKey(word)) counter.Add(word, new int[]{0, 0});
@@ -48,6 +57,8 @@ namespace DocumentPlagiarismChecker.Comparators.DocumentWordCounter
             }
 
             //Counting sample file word appearences, in order to ignore those from the previous files.
+            ///ESPAÑOL
+            ///Contando muestras de palabras aparecen en  arhivos, in order de ingnorar eso desde los arcivos anteriores.
             if(this.Sample != null){
                  foreach(string word in this.Sample.WordAppearances.Select(x => x.Key)){
                     if(counter.ContainsKey(word)){
@@ -61,11 +72,15 @@ namespace DocumentPlagiarismChecker.Comparators.DocumentWordCounter
             }
 
             //Defining the results headers
+            ///ESPAÑOL
+            ///Definiendo los resultados de cabecera
             ComparatorMatchingScore cr = new ComparatorMatchingScore(this.Left.Name, this.Right.Name, "Document Word Counter", DisplayLevel.FULL);            
             cr.DetailsCaption = new string[] { "Word", "Left count", "Right count", "Match" };
             cr.DetailsFormat = new string[]{"{0}", "{0}", "{0}", "{0:P2}"};
 
-            //Calculate the matching for each individual word.            
+            //Calculate the matching for each individual word.   
+            ///ESPAÑOL
+            //Calcula la busqueda para cada  palabra individualmente.         
             foreach(string word in counter.Select(x => x.Key)){                
                 int left = counter[word][0];
                 int right = counter[word][1];                
