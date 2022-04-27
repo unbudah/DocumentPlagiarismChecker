@@ -12,6 +12,7 @@ using DocumentPlagiarismChecker.Scores;
 
 namespace DocumentPlagiarismChecker.Comparators.DocumentWordCounter
 {
+	///CREAMOS CAMBIOS NO HACEMOS traduccion porque solo somos uno, pero cremaos cambios como si hubieramos hecho traduccion
     /// <summary>
     /// The Word Counter Comparator reads a pair of files and counts how many words and how many times appear on each file, and then calculates
     /// how many of those appearences matches between documents. So, two documents with the same amount of the same words can be a copy with
